@@ -1,4 +1,12 @@
-import { Box, Button, ChakraProvider, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  ChakraProvider,
+  Flex,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
 
@@ -7,6 +15,8 @@ function App() {
   const [outputValue, setOutputValue] = useState("");
   const [trainingText, setTrainingText] = useState("");
   const [trainingSucessText, setTrainingSucessText] = useState("");
+  const [isConfirming, setIsConfirming] = useState(false);
+  const toast = useToast();
 
   const handleTrainingTextChange = (event) => {
     setTrainingText(event.target.value);
@@ -50,6 +60,13 @@ function App() {
         `${process.env.REACT_APP_API_URL}/reset`
       );
       console.log(response.data.status);
+      toast({
+        title: "Successfully Reset autocomplete model.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+      setIsConfirming(false);
     } catch (error) {
       console.error(error);
     }
@@ -57,19 +74,27 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Button mt={3} onClick={handleReset}>
-        Reset Trie
-      </Button>
-
       <Box p={8}>
         <Input
           placeholder="Enter sentence or word to add to training data"
           value={trainingText}
           onChange={handleTrainingTextChange}
         />
-        <Button mt={3} onClick={handleTraining}>
-          Train Model
-        </Button>
+
+        <Flex justifyContent="space-between">
+          <Button mt={3} onClick={handleTraining}>
+            Train Model
+          </Button>
+
+          <Button
+            mt={3}
+            onClick={isConfirming ? handleReset : () => setIsConfirming(true)}
+            colorScheme={isConfirming ? "orange" : "blue"}
+          >
+            {isConfirming ? "Confirm" : "Reset Trie"}
+          </Button>
+        </Flex>
+
         <Text mt={6}>{trainingSucessText}</Text>
       </Box>
 
