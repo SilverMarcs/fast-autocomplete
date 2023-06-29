@@ -14,7 +14,6 @@ function App() {
   const [promptValue, setPromptValue] = useState("");
   const [outputValue, setOutputValue] = useState("");
   const [trainingText, setTrainingText] = useState("");
-  const [trainingSucessText, setTrainingSucessText] = useState("");
   const [isConfirming, setIsConfirming] = useState(false);
   const toast = useToast();
 
@@ -34,7 +33,12 @@ function App() {
           words: trainingText,
         }
       );
-      setTrainingSucessText(response.data.status);
+      toast({
+        title: "Successfully added new word(s) to model.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
     } catch (error) {
       console.error(error);
     }
@@ -59,7 +63,7 @@ function App() {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/reset`
       );
-      console.log(response.data.status);
+      // console.log(response.data.status);
       toast({
         title: "Successfully Reset autocomplete model.",
         status: "success",
@@ -94,8 +98,6 @@ function App() {
             {isConfirming ? "Confirm" : "Reset Trie"}
           </Button>
         </Flex>
-
-        <Text mt={6}>{trainingSucessText}</Text>
       </Box>
 
       <Box p={8}>
