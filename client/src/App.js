@@ -18,9 +18,12 @@ function App() {
 
   const handleTraining = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/insert`, {
-        words: trainingText,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/insert`,
+        {
+          words: trainingText,
+        }
+      );
       setTrainingSucessText(response.data.status);
     } catch (error) {
       console.error(error);
@@ -29,9 +32,12 @@ function App() {
 
   const handleAutocomplete = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/autocomplete`, {
-        prompt: promptValue,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/autocomplete`,
+        {
+          prompt: promptValue,
+        }
+      );
       setOutputValue(response.data.result);
     } catch (error) {
       console.error(error);
@@ -40,7 +46,9 @@ function App() {
 
   const handleReset = async () => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/reset`);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/reset`
+      );
       console.log(response.data.status);
     } catch (error) {
       console.error(error);
