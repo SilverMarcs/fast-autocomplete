@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
+import SuggestionInput from "./SuggestionInput";
 
 function App() {
   const [promptValue, setPromptValue] = useState("");
@@ -93,14 +94,16 @@ function App() {
           <Button
             mt={3}
             onClick={isConfirming ? handleReset : () => setIsConfirming(true)}
-            colorScheme={isConfirming ? "orange" : "blue"}
+            colorScheme={isConfirming ? "orange" : "red"}
           >
-            {isConfirming ? "Confirm" : "Reset Trie"}
+            {isConfirming ? "Confirm" : "Reset Model"}
           </Button>
         </Flex>
       </Box>
 
-      <Box p={8}>
+      <SuggestionInput />
+
+      {/* <Box p={8}>
         <Input
           placeholder="Enter prompt to autocomplete"
           value={promptValue}
@@ -116,7 +119,7 @@ function App() {
           Your autocompleted word should appear below after clicking the button
         </Text>
         <Text mt={6}>{outputValue}</Text>
-      </Box>
+      </Box> */}
     </ChakraProvider>
   );
 }
