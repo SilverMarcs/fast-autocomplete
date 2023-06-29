@@ -30,7 +30,7 @@ function App() {
   const handleAutocomplete = async () => {
     try {
       const response = await axios.post(`http://127.0.0.1:8000/autocomplete`, {
-        word: promptValue,
+        prompt: promptValue,
       });
       setOutputValue(response.data.result);
     } catch (error) {
@@ -38,8 +38,21 @@ function App() {
     }
   };
 
+  const handleReset = async () => {
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/reset`);
+      console.log(response.data.status);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <ChakraProvider>
+      <Button mt={3} onClick={handleReset}>
+        Reset Trie
+      </Button>
+
       <Box p={8}>
         <Input
           placeholder="Enter sentence or word to add to training data"
