@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .trie import Trie
 import json
+import string
 
 
 @csrf_exempt
@@ -12,7 +13,10 @@ def insertWord(request):
         words = sentence.split()
 
         for word in words:
-            Trie.Instance().insert(word.lower())
+            # removing punctuation and making lowercase
+            word = word.translate(str.maketrans(
+                '', '', string.punctuation)).lower()
+            Trie.Instance().insert(word)
 
         return JsonResponse({'status': 'insertWord success'}, status=200)
 
