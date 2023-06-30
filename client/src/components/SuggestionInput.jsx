@@ -2,10 +2,18 @@ import { Box, Input } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-function SuggestionInput() {
+function SuggestionInput(props) {
   const [text, setText] = useState("");
   const [cursor, setCursor] = useState(0);
   const [autocompleteSuggestion, setAutocompleteSuggestion] = useState("");
+
+  useEffect(() => {
+    if (props.reset) {
+      setAutocompleteSuggestion("");
+      // setText("");
+      props.onResetComplete();
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const words = text.slice(0, cursor).split(" ");
