@@ -48,13 +48,13 @@ function SuggestionInput() {
   };
 
   return (
-    <Box p={8}>
+    <Box>
       <Input
         value={text}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
-      <Box mt={4} color="gray.400">
+      <Box mt={4} color="gray.600">
         {autocompleteSuggestion}
       </Box>
     </Box>

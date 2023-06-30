@@ -39,6 +39,7 @@ function App() {
     }
   };
 
+  // TODO: pass this func to SuggestionsInput component
   const handleReset = async () => {
     try {
       const response = await axios.post(
@@ -46,7 +47,7 @@ function App() {
       );
       // console.log(response.data.status);
       toast({
-        title: "Successfully Reset autocomplete model.",
+        title: "Successfully reset autocomplete model.",
         status: "success",
         duration: 2000,
         isClosable: true,
@@ -60,19 +61,22 @@ function App() {
   return (
     <ChakraProvider>
       <Box p={8}>
+        <Text fontSize="xl" fontWeight="bold">
+          Welcome to the Autocomplete Model Trainer
+        </Text>
         <Input
+          mt={9}
           placeholder="Enter sentence to add to training data"
           value={trainingText}
           onChange={handleTrainingTextChange}
         />
 
-        <Flex justifyContent="space-between">
-          <Button mt={3} onClick={handleTraining}>
+        <Flex mt={4} justifyContent="space-between">
+          <Button colorScheme="blue" onClick={handleTraining}>
             Train Model
           </Button>
 
           <Button
-            mt={3}
             onClick={isConfirming ? handleReset : () => setIsConfirming(true)}
             colorScheme={isConfirming ? "orange" : "red"}
           >
@@ -80,8 +84,18 @@ function App() {
           </Button>
         </Flex>
       </Box>
+      <Box p={8}>
+        <Text fontWeight="semibold" mb={4}>
+          As you type, suggestions appear below the textbox.
+        </Text>
 
-      <SuggestionInput />
+        <SuggestionInput />
+
+        <Text mt={100} fontStyle={"italic"} color="gray.600">
+          *You can press the 'Tab' key to apply the suggestion to the current
+          word
+        </Text>
+      </Box>
     </ChakraProvider>
   );
 }
