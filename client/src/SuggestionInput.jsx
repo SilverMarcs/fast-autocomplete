@@ -38,11 +38,18 @@ function SuggestionInput() {
     if (event.key === "Tab" && currentWord !== "") {
       event.preventDefault();
 
+      // Get all the words in the text up to the cursor position
       const words = text.slice(0, cursor).split(" ");
+
+      // Get all the words before the last word (excluding the last word)
       const before = words.slice(0, -1).join(" ");
+
+      // Get all the text after the cursor position
       const after = text.slice(cursor);
 
+      // Replace the current word with the autocomplete suggestion and add a space
       setText(`${before} ${autocompleteSuggestion} ${after}`);
+      // Move the cursor to the end of the suggestion
       setCursor(before.length + autocompleteSuggestion.length + 2);
     }
   };
