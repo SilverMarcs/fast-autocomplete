@@ -62,7 +62,7 @@ function SuggestionInput() {
         onKeyDown={handleKeyDown}
         placeholder="Enter text"
       />
-      <Box mt={4} ml={2} color="gray.600">
+      <Box mt={3} ml={2} color="gray.600">
         {autocompleteSuggestion}
       </Box>
     </Box>

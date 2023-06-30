@@ -8,7 +8,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InfoButton from "./components/InfoButton";
 import ResetAlertDialog from "./components/ResetAlertDialog";
 import SuggestionInput from "./components/SuggestionInput";
@@ -21,14 +21,20 @@ function App() {
     setTrainingText(event.target.value);
   };
 
+  // Resetting the model everytime page is refreshed/loaded because not using a database atm
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
+    };
+
+    fetchData();
+  }, []);
+
   const handleTraining = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/insert`,
-        {
-          words: trainingText,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_API_URL}/insert`, {
+        words: trainingText,
+      });
       toast({
         title: "Successfully added new word(s) to model.",
         status: "success",
@@ -43,10 +49,8 @@ function App() {
   // TODO: pass this func to SuggestionsInput component to reset autocomplete text
   const handleReset = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/reset`
-      );
-      // console.log(response.data.status);
+      await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
+
       toast({
         title: "Successfully reset autocomplete model.",
         status: "success",
@@ -65,11 +69,11 @@ function App() {
         <Text fontSize="2xl" fontWeight="bold">
           Welcome to the Autocomplete Model Trainer!
         </Text>
-        <Flex align="left" mt={16}>
+        <Flex align="left" mt={12}>
           <Text fontWeight="semibold" mb={4} mr={2}>
             Enter sentence to add to training data.
           </Text>
-          <InfoButton infoText="Model is trained everytime Train Model button is pressed with word from the textbox." />
+          <InfoButton infoText="Model is trained everytime Train Model button is pressed with word(s) from the textbox." />
         </Flex>
         <Input
           placeholder="Enter text"
@@ -94,6 +98,9 @@ function App() {
           <InfoButton infoText="You can press the 'Tab' key to apply the suggestion to the current word" />
         </Flex>
         <SuggestionInput />
+        <Text mt={100} fontStyle={"italic"} color="gray.500">
+          *Model is reset on page refresh
+        </Text>
       </Box>
     </ChakraProvider>
   );
