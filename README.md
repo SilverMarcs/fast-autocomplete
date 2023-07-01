@@ -1,32 +1,34 @@
 # fast-autocomplete
 
-A simple frontend that connects with a backend to provide an efficient Autocomplete Suggestion System.
+A simple **Create React App** frontend that connects with a backend **Django** server to provide an efficient Autocomplete Suggestion System.
 This is similar to ones we have on our phones.
 
-A demo is available [here](https://fast-autocomplete.vercel.app)
+Note: Extensive input validation has not been implemented yet.
+
+A **demo** is available [**here**](https://fast-autocomplete.vercel.app)
 
 ## Running locally
 
 ### Server
 
-- Git clone the repository from terminal <br>
+- Git clone the repository from terminal
 ````
 git clone https://github.com/SilverMarcs/fast-autocomplete.git
 ````
 
-- Move to server folder <br>
+- Move to the cloned folder and move to server folder
 
 ````
-cd server
+cd fast-autocomplete && cd server
 ````
 
-- Install django using pip <br>
+- Install django using pip
 
 ````
 pip install django
 ````
 
-- Start the server. If it complains about missing package/dependency, simply instal via pip <br>
+- Start the server. If it complains about missing package/dependency, simply install via pip
 
 ````
 python manage.py runserver
@@ -35,19 +37,19 @@ python manage.py runserver
 
 ### Client
 
-- Returning to parent directory with ```cd ..```, move to client folder <br>
+- Return to parent directory and move to client folder
   
 ````
-cd client
+cd .. && cd client
 ````
 
-- Install node dependencies and wait until they get insatlled <br>
+- Install node dependencies and wait until they get installed 
   
 ````
 npm install
 ````
 
-- Start the server for frontend. A browser window should automatically open at http://localhost:3000 <br>
+- Start the server for frontend. A browser window should automatically open at http://localhost:3000
   
 ````
 npm run start
