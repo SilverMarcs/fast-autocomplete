@@ -10,37 +10,50 @@ A demo is available [here](https://fast-autocomplete.vercel.app)
 ### Server
 
 - Git clone the repository from terminal <br>
-
-```git clone https://github.com/SilverMarcs/fast-autocomplete.git```
+````
+git clone https://github.com/SilverMarcs/fast-autocomplete.git
+````
 
 - Move to server folder <br>
 
-```cd server```
+````
+cd server
+````
 
 - Install django using pip <br>
 
-```pip install django```
-or
-```python -m pip install django```
+````
+pip install django
+````
 
 - Start the server. If it complains about missing package/dependency, simply instal via pip <br>
 
-```python manage.py runserver```
+````
+python manage.py runserver
+````
+
 
 ### Client
 
 - Returning to parent directory with ```cd ..```, move to client folder <br>
   
-```cd client```
+````
+cd client
+````
 
 - Install node dependencies and wait until they get insatlled <br>
   
-```npm install```
+````
+npm install
+````
 
 - Start the server for frontend. A browser window should automatically open at http://localhost:3000 <br>
   
-```npm run start```
+````
+npm run start
+````
+<br>
 
-
-*use python3 instead of python if that's how its set in your system's PATH*
+**use ```python3``` instead of ```python``` if that's how its set in your system's PATH*<br>
+**add ```python -m``` prefix before pip command if you system is set up like that*
 
