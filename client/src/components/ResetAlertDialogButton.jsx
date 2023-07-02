@@ -10,13 +10,12 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 
-function ResetAlertDialog({ onReset }) {
+function ResetAlertDialogButton({ onReset }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
 
   return (
     <>
-      {/* TODO remove bg in following line */}
       <Button colorScheme="red" onClick={onOpen} color="gray.200">
         Reset Model
       </Button>
@@ -64,4 +63,4 @@ function ResetAlertDialog({ onReset }) {
   );
 }
 
-export default ResetAlertDialog;
+export default ResetAlertDialogButton;

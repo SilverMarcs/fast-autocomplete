@@ -3,18 +3,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import InfoButton from "./InfoButton";
 
-function SuggestionInput(props) {
+function SuggestionInput() {
   const [text, setText] = useState("");
   const [cursor, setCursor] = useState(0);
   const [autocompleteSuggestion, setAutocompleteSuggestion] = useState("");
 
-  useEffect(() => {
-    if (props.reset) {
-      setAutocompleteSuggestion("");
-      // setText("");
-      props.onResetComplete();
-    }
-  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   if (props.reset) {
+  //     setAutocompleteSuggestion("");
+  //     setText("");
+  //     props.onResetComplete();
+  //   }
+  // }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const words = text.slice(0, cursor).split(" ");

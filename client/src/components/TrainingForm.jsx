@@ -1,12 +1,12 @@
 import { Button, Flex, Input, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import InfoButton from "./InfoButton";
-import ResetAlertDialog from "./ResetAlertDialog";
+import ResetAlertDialogButton from "./ResetAlertDialogButton";
 
-const TrainingForm = ({ onReset }) => {
+const TrainingForm = () => {
   const [trainingText, setTrainingText] = useState("");
   const [isTraining, setIsTraining] = useState(false);
+
   const toast = useToast();
 
   const handleTraining = async () => {
@@ -28,6 +28,21 @@ const TrainingForm = ({ onReset }) => {
     }
   };
 
+  const handleReset = async () => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
+      toast({
+        title: "Successfully reset autocomplete model.",
+        status: "success",
+        duration: 1700,
+        isClosable: true,
+      });
+      //   setReset(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleTrainingTextChange = (event) => {
     setTrainingText(event.target.value);
   };
@@ -38,7 +53,6 @@ const TrainingForm = ({ onReset }) => {
         <Text fontWeight="semibold" mb={4} mr={2} color="gray.300">
           Enter word or sentence to add to training data.
         </Text>
-        <InfoButton infoText="Model is trained every time Train Model button is pressed with word(s) from the textbox." />
       </Flex>
       <Input
         placeholder="Enter text"
@@ -59,7 +73,7 @@ const TrainingForm = ({ onReset }) => {
           Train Model
         </Button>
 
-        <ResetAlertDialog onReset={onReset} />
+        <ResetAlertDialogButton onReset={handleReset} />
       </Flex>
     </>
   );
