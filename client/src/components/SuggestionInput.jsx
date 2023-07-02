@@ -1,6 +1,7 @@
-import { Box, Input } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import InfoButton from "./InfoButton";
 
 function SuggestionInput(props) {
   const [text, setText] = useState("");
@@ -64,6 +65,12 @@ function SuggestionInput(props) {
 
   return (
     <Box color="white">
+      <Flex align="left">
+        <Text fontWeight="semibold" mb={4} mr={2} color="gray.300">
+          As you type, suggestions appear below the textbox.
+        </Text>
+        <InfoButton infoText="You can press the 'Tab' key to apply the suggestion to the current word" />
+      </Flex>
       <Input
         value={text}
         onChange={handleInputChange}
