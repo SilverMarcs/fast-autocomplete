@@ -30,6 +30,28 @@ const TrainingForm = (props) => {
   const handleTraining = async () => {
     setIsTraining(true);
     try {
+      // check if training text is empty
+      if (trainingText === "") {
+        toast({
+          title: "Training text cannot be empty.",
+          status: "error",
+          duration: 1700,
+          isClosable: true,
+        });
+        return;
+      }
+
+      // check if training text is alphabetical only
+      if (!/^[a-zA-Z\s]*$/.test(trainingText)) {
+        toast({
+          title: "Training text can only contain letters and spaces.",
+          status: "error",
+          duration: 1700,
+          isClosable: true,
+        });
+        return;
+      }
+
       await axios.post(`${process.env.REACT_APP_API_URL}/insert`, {
         words: trainingText,
       });
