@@ -12,7 +12,7 @@ def insertWord(request):
         words = sentence.split()
 
         for word in words:
-            Trie.Instance().insert(word)
+            Trie.Instance().insert(word.lower())
 
         return JsonResponse({"status": "insertWord success"}, status=200)
 

@@ -63,6 +63,12 @@ const TrainingForm = (props) => {
       });
     } catch (error) {
       console.error(error);
+      toast({
+        title: "An error occurred while training model.",
+        status: "error",
+        duration: 1700,
+        isClosable: true,
+      });
     } finally {
       setIsTraining(false);
     }
