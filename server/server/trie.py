@@ -10,7 +10,7 @@ class Singleton:
             return self._instance
 
     def __call__(self):
-        raise TypeError('Singletons must be accessed through `Instance()`.')
+        raise TypeError("Singletons must be accessed through `Instance()`.")
 
     def __instancecheck__(self, inst):
         return isinstance(inst, self._decorated)
@@ -39,13 +39,14 @@ class Trie:
 
         letter = word[index]
 
-        child_index = ord(letter) - ord('a')
+        child_index = ord(letter) - ord("a")
 
         if node.link[child_index] is None:
             node.link[child_index] = Node()
 
-        node.max_frequency = max(node.max_frequency, self.insert(
-            word, node.link[child_index], index + 1))
+        node.max_frequency = max(
+            node.max_frequency, self.insert(word, node.link[child_index], index + 1)
+        )
         return node.max_frequency
 
     def find_max_frequency_word(self, node, prefix):
@@ -56,7 +57,8 @@ class Trie:
             child = node.link[i]
             if child is not None and child.max_frequency > highest_frequency:
                 completed_word = self.find_max_frequency_word(
-                    child, prefix + chr(i + ord('a')))
+                    child, prefix + chr(i + ord("a"))
+                )
                 highest_frequency_word = completed_word
                 highest_frequency = child.max_frequency
 
@@ -65,7 +67,7 @@ class Trie:
     def autocomplete(self, prompt):
         current = self.root
         for letter in prompt:
-            index = ord(letter) - ord('a')
+            index = ord(letter) - ord("a")
 
             if current.link[index] is None:
                 return None
