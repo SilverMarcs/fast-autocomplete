@@ -83,6 +83,9 @@ function SuggestionInput(props) {
       <Box mt={3} ml={2} color="gray.300">
         {autocompleteSuggestion}
       </Box>
+      <Text mt={100} fontStyle={"italic"} color="gray.500">
+        *Model is reset on page refresh
+      </Text>
     </Box>
   );
 }

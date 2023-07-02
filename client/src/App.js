@@ -1,13 +1,7 @@
-import {
-  Box,
-  Center,
-  ChakraProvider,
-  Spinner,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, ChakraProvider, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 import SuggestionInput from "./components/SuggestionInput";
 import TrainingForm from "./components/TrainingForm";
@@ -16,6 +10,7 @@ function App() {
   const [reset, setReset] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Reset model on page refresh (or first load) since not using a database yet
   useEffect(() => {
     const resetModel = async () => {
       setIsLoading(true);
@@ -31,26 +26,7 @@ function App() {
 
   return (
     <ChakraProvider>
-      {isLoading && (
-        <Box
-          position="fixed"
-          top="0"
-          right="0"
-          bottom="0"
-          left="0"
-          backgroundColor="rgba(0, 0, 0, 0.5)"
-          zIndex="1000"
-        >
-          <Center height="100%">
-            <VStack spacing={4}>
-              <Spinner size="xl" color="blue.500" />
-              <Text fontSize="large" color="white">
-                Loading Goodies
-              </Text>
-            </VStack>
-          </Center>
-        </Box>
-      )}
+      {isLoading && <LoadingOverlay />}
       <Box p={8} color="white" bg="gray.800">
         <Text fontSize="2xl" fontWeight="bold" color="blue.300">
           Welcome to the Autocomplete Model Trainer!
@@ -67,10 +43,6 @@ function App() {
           reset={reset}
           onResetComplete={() => setReset(false)}
         />
-
-        <Text mt={100} fontStyle={"italic"} color="gray.500">
-          *Model is reset on page refresh
-        </Text>
       </Box>
     </ChakraProvider>
   );
