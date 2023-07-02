@@ -1,7 +1,13 @@
 # fast-autocomplete
 
-A simple **Create React App** frontend that connects with a backend **Django** server to provide an efficient Autocomplete Suggestion System.
-This is similar to ones we have on our phones.
+A simple frontend that connects with a backend server to provide an efficient Autocomplete Suggestion System.
+This is similar to ones we have on our phones.<br>
+
+Stack used:
+- **Django** for backend server
+- **Create React App** for frontend
+- **ChakraUI** for styling
+
 
 Note: Extensive input validation has not been implemented yet.
 
@@ -47,6 +53,12 @@ cd .. && cd client
   
 ````
 npm install
+````
+
+- In the client folder,r ename .env.example file to .env and paste the following: 
+  
+````
+REACT_APP_API_URL = http://127.0.0.1:8000
 ````
 
 - Start the server for frontend. A browser window should automatically open at http://localhost:3000
