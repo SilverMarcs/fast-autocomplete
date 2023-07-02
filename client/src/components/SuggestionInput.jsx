@@ -96,8 +96,14 @@ function SuggestionInput(props) {
         </FormHelperText>
       </FormControl>
       {autocompleteSuggestion && (
-        <Box mt={3} ml={1} color="gray.400">
-          {autocompleteSuggestion}
+        <Box
+          mt={5}
+          backgroundColor="green.600"
+          borderRadius="md"
+          p={2}
+          width="fit-content"
+        >
+          <Text>{autocompleteSuggestion}</Text>
         </Box>
       )}
     </Card>
