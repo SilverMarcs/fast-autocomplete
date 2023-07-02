@@ -56,7 +56,8 @@ function App() {
         borderRadius={["0", "0", "lg"]} // No border radius on small & medium screens, lg on larger
         boxShadow={["none", "none", "xl"]} // No shadow on small & medium screens, xl shadow on larger
         width={["100%", "100%", "auto"]} // Full width on small & medium screens, auto on larger
-        height={["100vh", "100vh", "auto"]} // Full viewport height on small & medium screens, auto on larger
+        minHeight={["100vh", "100vh", "auto"]} // Minimum full viewport height on small & medium screens, auto on larger
+        overflowY={"auto"} // Adds a scrollbar if content overflows
       >
         <Heading textAlign="center" size="2xl" mb={10} color="blue.300" pt={5}>
           Welcome to the Autocomplete Model Trainer!
@@ -71,8 +72,8 @@ function App() {
             reset={reset}
             onResetComplete={() => setReset(false)}
           />
-          <Text mt={5} fontStyle="italic" color="gray.500">
-            *Model is reset on page refresh
+          <Text mt={5} mb={15} fontStyle="italic" color="gray.500">
+            Model is reset on page refresh
           </Text>
         </VStack>
       </Box>
