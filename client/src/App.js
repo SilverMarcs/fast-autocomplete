@@ -1,11 +1,13 @@
 import { Box, ChakraProvider, Text } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import SuggestionInput from "./components/SuggestionInput";
 import TrainingForm from "./components/TrainingForm";
 
 function App() {
+  const [reset, setReset] = useState(false);
+
   // Resetting the model everytime page is refreshed/loaded because not using a database atm
   useEffect(() => {
     const resetModel = async () => {
@@ -20,11 +22,18 @@ function App() {
         <Text fontSize="2xl" fontWeight="bold" color="blue.300">
           Welcome to the Autocomplete Model Trainer!
         </Text>
-        <TrainingForm />
+        <TrainingForm
+          reset={reset}
+          setReset={setReset}
+          onResetComplete={() => setReset(false)}
+        />
       </Box>
 
       <Box p={8} bg="gray.800">
-        <SuggestionInput />
+        <SuggestionInput
+          reset={reset}
+          onResetComplete={() => setReset(false)}
+        />
 
         <Text mt={100} fontStyle={"italic"} color="gray.500">
           *Model is reset on page refresh

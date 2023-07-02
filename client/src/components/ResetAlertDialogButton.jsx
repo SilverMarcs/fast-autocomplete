@@ -7,12 +7,37 @@ import {
   AlertDialogOverlay,
   Button,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import axios from "axios";
+import { useEffect, useRef } from "react";
 
-function ResetAlertDialogButton({ onReset }) {
+function ResetAlertDialogButton(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
+
+  const toast = useToast();
+
+  useEffect(() => {
+    if (props.reset) {
+      props.onResetComplete();
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleReset = async () => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
+      toast({
+        title: "Successfully reset autocomplete model.",
+        status: "success",
+        duration: 1700,
+        isClosable: true,
+      });
+      props.setReset(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -48,7 +73,7 @@ function ResetAlertDialogButton({ onReset }) {
               <Button
                 colorScheme="red"
                 onClick={() => {
-                  onReset();
+                  handleReset();
                   onClose();
                 }}
                 ml={3}

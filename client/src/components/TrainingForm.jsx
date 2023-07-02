@@ -1,13 +1,20 @@
 import { Button, Flex, Input, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResetAlertDialogButton from "./ResetAlertDialogButton";
 
-const TrainingForm = () => {
+const TrainingForm = (props) => {
   const [trainingText, setTrainingText] = useState("");
   const [isTraining, setIsTraining] = useState(false);
 
   const toast = useToast();
+
+  useEffect(() => {
+    if (props.reset) {
+      setTrainingText("");
+      props.onResetComplete();
+    }
+  }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleTraining = async () => {
     setIsTraining(true);
@@ -25,21 +32,6 @@ const TrainingForm = () => {
       console.error(error);
     } finally {
       setIsTraining(false);
-    }
-  };
-
-  const handleReset = async () => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
-      toast({
-        title: "Successfully reset autocomplete model.",
-        status: "success",
-        duration: 1700,
-        isClosable: true,
-      });
-      //   setReset(true);
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -73,7 +65,11 @@ const TrainingForm = () => {
           Train Model
         </Button>
 
-        <ResetAlertDialogButton onReset={handleReset} />
+        <ResetAlertDialogButton
+          reset={props.reset}
+          setReset={props.setReset}
+          onResetComplete={() => props.onResetComplete}
+        />
       </Flex>
     </>
   );
