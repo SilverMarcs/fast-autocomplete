@@ -1,6 +1,7 @@
 import { Button, Flex, Input, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import InfoButton from "./InfoButton";
 import ResetAlertDialogButton from "./ResetAlertDialogButton";
 
 const TrainingForm = (props) => {
@@ -45,6 +46,7 @@ const TrainingForm = (props) => {
         <Text fontWeight="semibold" mb={4} mr={2} color="gray.300">
           Enter word or sentence to add to training data.
         </Text>
+        <InfoButton infoText="Model is trained every time Train Model button is pressed with word(s) from the textbox." />
       </Flex>
       <Input
         placeholder="Enter text"

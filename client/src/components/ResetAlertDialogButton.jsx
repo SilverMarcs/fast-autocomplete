@@ -10,13 +10,18 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function ResetAlertDialogButton(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const cancelRef = useRef();
+  const [isResetting, setIsResetting] = useState(false);
 
+  const cancelRef = useRef();
   const toast = useToast();
+
+  const delay = (time) => {
+    return new Promise((res) => setTimeout(res, time));
+  };
 
   useEffect(() => {
     if (props.reset) {
@@ -24,18 +29,24 @@ function ResetAlertDialogButton(props) {
     }
   }, [props.reset]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const showResetToast = () => {
+    toast({
+      title: "Successfully reset autocomplete model.",
+      status: "success",
+      duration: 1700,
+      isClosable: true,
+    });
+  };
+
   const handleReset = async () => {
+    setIsResetting(true);
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/reset`);
-      toast({
-        title: "Successfully reset autocomplete model.",
-        status: "success",
-        duration: 1700,
-        isClosable: true,
-      });
       props.setReset(true);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsResetting(false);
     }
   };
 
@@ -72,13 +83,17 @@ function ResetAlertDialogButton(props) {
               </Button>
               <Button
                 colorScheme="red"
-                onClick={() => {
+                onClick={async () => {
                   handleReset();
+                  await delay(100);
                   onClose();
+                  showResetToast();
                 }}
+                isLoading={isResetting}
+                loadingText="Resetting..."
                 ml={3}
               >
-                Confirm
+                Reset
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
