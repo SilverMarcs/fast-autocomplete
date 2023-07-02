@@ -2,6 +2,7 @@ import {
   Box,
   Flex,
   FormControl,
+  FormHelperText,
   FormLabel,
   Input,
   Text,
@@ -9,7 +10,6 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import InfoButton from "./InfoButton";
 
 function SuggestionInput(props) {
   const [text, setText] = useState("");
@@ -81,7 +81,6 @@ function SuggestionInput(props) {
           <FormLabel color="gray.200">
             As you type, suggestions appear below the textbox.
           </FormLabel>
-          <InfoButton infoText="You can press the 'Tab' key to apply the suggestion to the current word." />
         </Flex>
         <Input
           value={text}
@@ -92,11 +91,9 @@ function SuggestionInput(props) {
           color="gray.100"
           borderColor="gray.500"
         />
-
-        {/* <FormHelperText color="gray.400">
-          *You can press the 'Tab' key to apply the suggestion to the current
-          word
-        </FormHelperText> */}
+        <FormHelperText color="gray.400" ml={1}>
+          Tip: Press the 'Tab' key to apply the suggestion to the current word
+        </FormHelperText>
       </FormControl>
       {autocompleteSuggestion && (
         <Box mt={3} ml={1} color="gray.400">
