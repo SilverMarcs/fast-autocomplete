@@ -1,6 +1,14 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Card from "./Card";
 import InfoButton from "./InfoButton";
 
 function SuggestionInput(props) {
@@ -64,29 +72,38 @@ function SuggestionInput(props) {
   };
 
   return (
-    <Box color="white">
-      <Flex align="left">
-        <Text fontWeight="semibold" mb={4} mr={2} color="gray.300">
-          As you type, suggestions appear below the textbox.
-        </Text>
-        <InfoButton infoText="You can press the 'Tab' key to apply the suggestion to the current word" />
-      </Flex>
-      <Input
-        value={text}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-        placeholder="Enter text"
-        bg="gray.700"
-        color="gray.200"
-        borderColor="gray.600"
-      />
-      <Box mt={3} ml={2} color="gray.300">
-        {autocompleteSuggestion}
-      </Box>
-      <Text mt={100} fontStyle={"italic"} color="gray.500">
-        *Model is reset on page refresh
+    <Card minHeight="200px">
+      <Text fontSize="lg" fontWeight="semibold" mb={4} color="green.200">
+        Get Suggestions
       </Text>
-    </Box>
+      <FormControl>
+        <Flex>
+          <FormLabel color="gray.200">
+            As you type, suggestions appear below the textbox.
+          </FormLabel>
+          <InfoButton infoText="You can press the 'Tab' key to apply the suggestion to the current word." />
+        </Flex>
+        <Input
+          value={text}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Enter text"
+          bgColor="gray.600"
+          color="gray.100"
+          borderColor="gray.500"
+        />
+
+        {/* <FormHelperText color="gray.400">
+          *You can press the 'Tab' key to apply the suggestion to the current
+          word
+        </FormHelperText> */}
+      </FormControl>
+      {autocompleteSuggestion && (
+        <Box mt={3} ml={1} color="gray.400">
+          {autocompleteSuggestion}
+        </Box>
+      )}
+    </Card>
   );
 }
 

@@ -1,6 +1,15 @@
-import { Button, Flex, Input, Text, useToast } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Card from "./Card";
 import InfoButton from "./InfoButton";
 import ResetAlertDialogButton from "./ResetAlertDialogButton";
 
@@ -41,39 +50,46 @@ const TrainingForm = (props) => {
   };
 
   return (
-    <>
-      <Flex align="left" mt={12}>
-        <Text fontWeight="semibold" mb={4} mr={2} color="gray.300">
-          Enter word or sentence to add to training data.
-        </Text>
-        <InfoButton infoText="Model is trained every time Train Model button is pressed with word(s) from the textbox." />
-      </Flex>
-      <Input
-        placeholder="Enter text"
-        value={trainingText}
-        onChange={handleTrainingTextChange}
-        bg="gray.700"
-        color="gray.200"
-        borderColor="gray.600"
-      />
-
-      <Flex mt={5} justifyContent="space-between">
-        <Button
-          colorScheme="blue"
-          onClick={handleTraining}
-          isLoading={isTraining}
-          loadingText="Training..."
-        >
-          Train Model
-        </Button>
-
-        <ResetAlertDialogButton
-          reset={props.reset}
-          setReset={props.setReset}
-          onResetComplete={() => props.onResetComplete}
+    <Card>
+      <Text fontSize="lg" fontWeight="semibold" mb={4} color="green.200">
+        Training Model
+      </Text>
+      <FormControl>
+        <Flex>
+          <FormLabel color="gray.200">
+            Enter word or sentence to add to training data.
+          </FormLabel>
+          <InfoButton
+            infoText="Model is trained every time Train Model button is pressed with
+            word(s) from the textbox."
+          />
+        </Flex>
+        <Input
+          placeholder="Enter text"
+          value={trainingText}
+          onChange={handleTrainingTextChange}
+          bgColor="gray.600"
+          color="gray.100"
+          borderColor="gray.500"
         />
-      </Flex>
-    </>
+
+        <Flex mt={5} justifyContent="space-between" alignItems="center">
+          <Button
+            colorScheme="blue"
+            onClick={handleTraining}
+            isLoading={isTraining}
+            loadingText="Training..."
+          >
+            Train Model
+          </Button>
+          <ResetAlertDialogButton
+            reset={props.reset}
+            setReset={props.setReset}
+            onResetComplete={() => props.onResetComplete}
+          />
+        </Flex>
+      </FormControl>
+    </Card>
   );
 };
 
