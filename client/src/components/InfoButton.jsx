@@ -1,12 +1,10 @@
 import { InfoIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Icon,
   Popover,
   PopoverBody,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Text,
 } from "@chakra-ui/react";
@@ -15,9 +13,9 @@ function InfoButton({ infoText }) {
   return (
     <Popover>
       <PopoverTrigger cursor="pointer">
-        <Icon cursor="pointer" as={InfoIcon} />
+        <Icon color="gray.200" cursor="pointer" as={InfoIcon} />
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent bg="gray.800" color="gray.200" borderColor="gray.600">
         <PopoverBody>
           <Box mb={2}>
             <Text>{infoText}</Text>

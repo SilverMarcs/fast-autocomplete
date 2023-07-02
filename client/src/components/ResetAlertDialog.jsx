@@ -16,7 +16,8 @@ function ResetAlertDialog({ onReset }) {
 
   return (
     <>
-      <Button colorScheme="red" onClick={onOpen}>
+      {/* TODO remove bg in following line */}
+      <Button colorScheme="red" onClick={onOpen} color="gray.200">
         Reset Model
       </Button>
 
@@ -26,7 +27,7 @@ function ResetAlertDialog({ onReset }) {
         onClose={onClose}
       >
         <AlertDialogOverlay>
-          <AlertDialogContent>
+          <AlertDialogContent bg="gray.800" color="gray.200">
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               Reset Model
             </AlertDialogHeader>
@@ -36,7 +37,13 @@ function ResetAlertDialog({ onReset }) {
             </AlertDialogBody>
 
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
+              <Button
+                bg="gray.700"
+                color="gray.200"
+                ref={cancelRef}
+                onClick={onClose}
+                _hover={{ bg: "gray.600" }}
+              >
                 Cancel
               </Button>
               <Button

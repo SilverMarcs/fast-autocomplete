@@ -63,14 +63,17 @@ function SuggestionInput(props) {
   };
 
   return (
-    <Box>
+    <Box color="white">
       <Input
         value={text}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         placeholder="Enter text"
+        bg="gray.700"
+        color="gray.200"
+        borderColor="gray.600"
       />
-      <Box mt={3} ml={2} color="gray.600">
+      <Box mt={3} ml={2} color="gray.300">
         {autocompleteSuggestion}
       </Box>
     </Box>
