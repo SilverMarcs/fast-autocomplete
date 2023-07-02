@@ -72,7 +72,7 @@ function SuggestionInput(props) {
   };
 
   return (
-    <Card minHeight="200px">
+    <Card minHeight="237px">
       <Text fontSize="lg" fontWeight="semibold" mb={4} color="green.200">
         Get Suggestions
       </Text>

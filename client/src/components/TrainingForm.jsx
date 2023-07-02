@@ -2,6 +2,7 @@ import {
   Button,
   Flex,
   FormControl,
+  FormHelperText,
   FormLabel,
   Input,
   Text,
@@ -72,7 +73,9 @@ const TrainingForm = (props) => {
           color="gray.100"
           borderColor="gray.500"
         />
-
+        <FormHelperText color={"gray.400"}>
+          Very large inputs may affect UI responsiveness.
+        </FormHelperText>
         <Flex mt={5} justifyContent="space-between" alignItems="center">
           <Button
             colorScheme="blue"
