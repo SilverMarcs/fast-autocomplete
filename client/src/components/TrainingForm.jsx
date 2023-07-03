@@ -101,7 +101,7 @@ const TrainingForm = (props) => {
           color="gray.100"
           borderColor="gray.500"
         />
-        <FormHelperText color={"gray.400"}>
+        <FormHelperText color={"gray.400"} ml={1} fontSize={"xs"}>
           Very large inputs may affect UI responsiveness.
         </FormHelperText>
         <Flex mt={5} justifyContent="space-between" alignItems="center">

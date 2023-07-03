@@ -52,10 +52,10 @@ function App() {
         m={[0, 0, 10]} // No margin on small & medium screens, 10 on larger
         color="white"
         bg="gray.800"
-        p={[0, 0, (12, 8, 14, 8)]} // No padding on small & medium screens, specific padding on larger
+        p={[1, 1, (12, 8, 14, 8)]} // No padding on small & medium screens, specific padding on larger
         borderRadius={["0", "0", "lg"]} // No border radius on small & medium screens, lg on larger
         boxShadow={["none", "none", "xl"]} // No shadow on small & medium screens, xl shadow on larger
-        width={["100%", "100%", "auto"]} // Full width on small & medium screens, auto on larger
+        width={["100%", "100vh", "auto"]} // Full width on small & medium screens, auto on larger
         minHeight={["100vh", "100vh", "auto"]} // Minimum full viewport height on small & medium screens, auto on larger
         overflowY={"auto"} // Adds a scrollbar if content overflows
       >

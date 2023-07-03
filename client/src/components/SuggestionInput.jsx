@@ -94,7 +94,7 @@ function SuggestionInput(props) {
           color="gray.100"
           borderColor="gray.500"
         />
-        <FormHelperText color="gray.400" ml={1}>
+        <FormHelperText color="gray.400" ml={1} fontSize={"xs"}>
           Tip: Press the 'Tab' key or click on the suggestion to apply it to the
           current word
         </FormHelperText>
