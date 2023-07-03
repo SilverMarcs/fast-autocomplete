@@ -1,17 +1,17 @@
 # fast-autocomplete
 
-A simple frontend that connects with a backend server to provide an efficient Autocomplete Suggestion System.
-This is similar to ones we have on our phones.<br>
+A **demo** is available [**here**](https://fast-autocomplete.vercel.app)
+
+<img width="1240" alt="Screenshot 2023-07-03 at 1 13 32 PM" src="https://github.com/SilverMarcs/fast-autocomplete/assets/77480421/0f1abdb9-b327-4a44-aa66-4c42aac05651">
+
+A simple frontend that connects with a backend server to provide an efficient Autocomplete Suggestion service, similar to ones we have on our phones.<br>
 
 Stack used:
 - **Django** for backend server
 - **Create React App** for frontend
 - **ChakraUI** for styling
 
-
 Note: Extensive input validation has not been implemented yet.
-
-A **demo** is available [**here**](https://fast-autocomplete.vercel.app)
 
 ## Running locally
 
