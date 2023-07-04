@@ -1,7 +1,7 @@
 import { Box, Center, Spinner, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 
-export function LoadingOverlay() {
+export function LoadingOverlay({ text }) {
   return (
     <Box
       position="fixed"
@@ -16,7 +16,7 @@ export function LoadingOverlay() {
         <VStack spacing={4}>
           <Spinner size="xl" color="blue.500" />
           <Text fontSize="large" color="white">
-            Loading Goodies
+            {text}
           </Text>
         </VStack>
       </Center>

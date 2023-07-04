@@ -47,7 +47,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <CSSReset />
-      {isLoading && <LoadingOverlay />}
+      {isLoading && <LoadingOverlay text="Loading Goodies" />}
       <Box
         m={[0, 0, 10]} // No margin on small & medium screens, 10 on larger
         color="white"

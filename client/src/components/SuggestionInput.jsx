@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./Card";
+import InfoButton from "./InfoButton";
 
 function SuggestionInput(props) {
   const [text, setText] = useState("");
@@ -84,6 +85,7 @@ function SuggestionInput(props) {
           <FormLabel color="gray.200">
             As you type, suggestions appear below the textbox.
           </FormLabel>
+          <InfoButton infoText="Suggestions are based on the frequency of words above." />
         </Flex>
         <Input
           value={text}
