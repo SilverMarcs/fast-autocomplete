@@ -8,6 +8,15 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
+@app.route("/insert", methods=["OPTIONS"])
+def handle_options():
+    response = jsonify({"status": "OK"})
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+    response.headers.add("Access-Control-Allow-Methods", "POST")
+    return response
+
+
 @app.route("/insert", methods=["POST"])
 def insert_word():
     data = json.loads(request.data)
