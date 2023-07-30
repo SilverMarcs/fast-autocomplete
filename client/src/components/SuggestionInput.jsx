@@ -5,6 +5,7 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import axios from "axios";
@@ -16,6 +17,7 @@ function SuggestionInput(props) {
   const [text, setText] = useState("");
   const [cursor, setCursor] = useState(0);
   const [autocompleteSuggestion, setAutocompleteSuggestion] = useState("");
+  const [isLoadingSuggestion, setIsLoadingSuggestion] = useState(false);
 
   useEffect(() => {
     if (props.reset) {
@@ -29,6 +31,7 @@ function SuggestionInput(props) {
     const words = text.slice(0, cursor).split(" ");
     const currentWord = words[words.length - 1];
 
+    setIsLoadingSuggestion(true);
     axios
       .post(`${process.env.REACT_APP_API_URL}/autocomplete`, {
         prompt: currentWord,
@@ -39,9 +42,11 @@ function SuggestionInput(props) {
         } else {
           setAutocompleteSuggestion(currentWord);
         }
+        setIsLoadingSuggestion(false);
       })
       .catch((error) => {
         console.error("Error fetching autocomplete suggestions: ", error);
+        setIsLoadingSuggestion(false);
       });
   }, [text, cursor]);
 
@@ -111,7 +116,13 @@ function SuggestionInput(props) {
           onClick={replaceCurrentWordWithSuggestion}
           _hover={{ cursor: "pointer" }}
         >
-          <Text>{autocompleteSuggestion}</Text>
+          {isLoadingSuggestion ? (
+            <Flex alignItems="center">
+              <Spinner size="md" />
+            </Flex>
+          ) : (
+            <Text>{autocompleteSuggestion}</Text>
+          )}
         </Box>
       )}
     </Card>
